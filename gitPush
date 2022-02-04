@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Commands to push a file to repo
+
+git add "$1" ; git commit -m "$2" ; git push
