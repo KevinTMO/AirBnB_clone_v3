@@ -56,7 +56,7 @@ def createState():
     """
     Create a new State object
     """
-    if request.method == 'PUT':
+    if request.method == 'POST':
         if not request.get_json():
             return jsonify({
                 'error': 'Not a JSON'
