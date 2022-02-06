@@ -58,7 +58,7 @@ def createState():
             'error': 'Not a JSON'
         }), 400
 
-    elif 'name' not in request.get_json():
+    elif 'name' not in request.get_json().keys():
         return jsonify({
             'error:' 'Missing name',
             400
@@ -71,13 +71,13 @@ def createState():
 
 
 @app_views.route('/states/<states_id>', methods=['PUT'], strict_slashes=False)
-def updateState(state_id):
+def updateState(states_id):
     """
     Update an existing state object
     """
     if not request.get_json():
         return jsonify({
-            'error': 'Not a JSON',
+            'error': 'Not a JSON'
         }), 400
     obj = storage.get('State', states_id)
     if obj is None:
