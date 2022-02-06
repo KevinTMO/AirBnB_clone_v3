@@ -3,6 +3,10 @@
 Module: index.py
 
 Configuring a route to return JSON string
+
+Creating routes:
+  - /status: display a string 'status': 'OK'
+  - /stats: display the count of all clases objects
 """
 
 
@@ -26,12 +30,11 @@ def clsCount():
     """
     Retrieve the number of each objects by type
     """
-    result = {
+    return jsonify({
         "amenities": storage.count("Amenity"),
         "cities": storage.count("City"),
         "places": storage.count("Place"),
         "reviews": storage.count("Review"),
         "states": storage.count("State"),
         "users": storage.count("User")
-    }
-    return jsonify(result)
+    })
