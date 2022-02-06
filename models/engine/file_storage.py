@@ -70,10 +70,6 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
-        """
-        Return the objects of the class given by id
-        Or None if not class passed
-        """
         res = None
 
         for objs in self.__objects.values():
@@ -83,10 +79,6 @@ class FileStorage:
             return res
 
     def count(self, cls=None):
-        """
-        Return the number of objects matching the given class
-        If no class is passes return the count of all objects in storage
-        """
         total = 0
 
         if cls is not None:
