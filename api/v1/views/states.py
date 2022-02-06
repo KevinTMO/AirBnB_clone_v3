@@ -17,10 +17,7 @@ def allObjs():
     """
     Get all objs from State
     """
-    result = None
-
-    for objs in storage.all('State').values():
-        result = objs.to_dict()
+    result = [objs.to_dict() for objs in storage.all('State').values()]
     return jsonify(result)
 
 
