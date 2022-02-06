@@ -58,7 +58,7 @@ def createState():
             'error': 'Not a JSON'
         }), 400
 
-    elif 'name' not in request.get_json().keys():
+    elif 'name' not in request.get_json():
         return jsonify({
             'error:' 'Missing name',
             400
