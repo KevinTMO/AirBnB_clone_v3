@@ -77,13 +77,14 @@ class DBStorage:
 
     def get(self, cls, id):
         """Retrieve an object"""
+        result = None
         if cls is not None:
-            objs = self.__session.query(models.classes[cls]).all()
+            objs = self.__session.query(classes[cls]).all()
             for obj in objs:
                 if obj.id == id:
                     result = obj
         else:
-            return None
+            return result
 
     def count(self, cls=None):
         """
@@ -92,11 +93,11 @@ class DBStorage:
         """
         total = 0
         if cls is not None:
-            objs = self.__session.query(models.classes[cls]).all()
+            objs = self.__session.query(classes[cls]).all()
             total = len(objs)
         else:
-            for key, value in models.classes.items():
+            for key, value in classes.items():
                 if key != "BaseModel":
-                    objs = self.__session.query(models.classes[key]).all()
+                    objs = self.__session.query(classes[key]).all()
                     total += len(objs)
         return total
