@@ -75,13 +75,13 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-def get(self, cls, id):
+    def get(self, cls, id):
         """Retrieve an object"""
-        if cls is not None and type(cls) is str and id is not None and\
-           type(id) is str and cls in classes:
-            cls = classes[cls]
-            result = self.__session.query(cls).filter(cls.id == id).first()
-            return result
+        if cls is not None:
+            objs = self.__session.query(models.classes[cls]).all()
+            for obj in objs:
+                if obj.id == id:
+                    result = obj
         else:
             return None
 
@@ -91,10 +91,12 @@ def get(self, cls, id):
         cls = 'State'
         """
         total = 0
-        if type(cls) is str and cls in classes:
-            cls = classes[cls]
-            total = self.__session.query(cls).count()
-        elif cls is None:
-            for clss in classes.values():
-                total += self.__session.query(cls).count()
+        if cls is not None:
+            objs = self.__session.query(models.classes[cls]).all()
+            total = len(objs)
+        else:
+            for key, value in models.classes.items():
+                if key != "BaseModel":
+                    objs = self.__session.query(models.classes[key]).all()
+                    total += len(objs)
         return total
