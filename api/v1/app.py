@@ -7,7 +7,7 @@ Configuring flask for our app
 
 from api.v1.views import app_views
 from models import storage
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 from api.v1.views import app_views
 from os import getenv
 
@@ -28,9 +28,9 @@ def pageNotFound(error):
     """
     Handlers errors 404
     """
-    return jsonify({
+    return make_response(jsonify({
         'error': 'Not found'
-    })
+    }), 404)
 
 
 if __name__ == "__main__":
