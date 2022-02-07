@@ -74,11 +74,11 @@ class FileStorage:
         # cls_name = str(cls).split('.')[-1]
         # cls_name = cls_name.split("'")[0]
         # cls1 = cls_name + '.' + id
-        for objs in self.all(cls).values():
-            if objs.id == id:
-                res = objs
-        else:
-            return res
+        if cls:
+            for objs in self.all(cls).values():
+                if objs.id == id:
+                    return objs
+        return res
 
     def count(self, cls=None):
         total = 0
