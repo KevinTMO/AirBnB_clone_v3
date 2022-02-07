@@ -91,6 +91,5 @@ def updateState(states_id):
         objData = request.get_json()
         objData['id'] = obj.id
         objData['created_at'] = obj.created_at
-        objName = objData['name']
         obj.save()
         return jsonify(obj.to_dict()), 200
