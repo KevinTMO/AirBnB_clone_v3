@@ -78,17 +78,20 @@ class DBStorage:
     def get(self, cls, id):
         result = None
         if cls is not None:
-            objs = self.__session.query(classes[cls]).all()
+            cls_name = str(cls).split('.')[-1]
+            cls_name = cls_name.split("'")[0]
+            objs = self.__session.query(classes[cls_name]).all()
             for obj in objs:
                 if obj.id == id:
                     result = obj
-        else:
-            return result
+        return result
 
     def count(self, cls=None):
         total = 0
         if cls is not None:
-            objs = self.__session.query(classes[cls]).all()
+            cls_name = str(cls).split('.')[-1]
+            cls_name = cls_name.split("'")[0]
+            objs = self.__session.query(classes[cls_name]).all()
             total = len(objs)
         else:
             for key, value in classes.items():
