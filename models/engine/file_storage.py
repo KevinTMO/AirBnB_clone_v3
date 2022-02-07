@@ -72,8 +72,11 @@ class FileStorage:
     def get(self, cls, id):
         res = None
 
+        cls_name = str(cls).split('.')[-1]
+        cls_name = cls_name.split("'")[0]
+        cls1 = cls_name + '.' + id
         for objs in self.__objects.values():
-            if objs.id == id:
+            if cls1 in self.__objects:
                 res = objs
         else:
             return res
@@ -82,9 +85,10 @@ class FileStorage:
         total = 0
 
         if cls is not None:
-            for key in self.__objects.keys():
-                if cls in key:
+            for key in self.__objects:
+                cls_name = str(cls).split('.')[-1]
+                cls_name = cls_name.split("'>")[0]
+                if cls_name in key:
                     total += 1
         else:
-            total = len(self.__objects)
-        return total
+            return len(self.__objects)
