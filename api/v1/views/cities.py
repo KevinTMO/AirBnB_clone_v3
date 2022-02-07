@@ -15,20 +15,11 @@ def get_cities(state_id):
     state = storage.get("State", state_id)
     if state is None:
         abort(404)
-    #| Below first attempt -> Kevin
-    cities = [cts.to_dict() if cts.state_id == state.id
-              for cts in storage.all('City').values()]
-    #| Below second attempt -> Christian
-    # cities = []
-    # for city in state.cities:
-    # cities.append(city.to_dict())
-    # Below third attempt -> Kevin
-    # cities = [cts.to_dict() for cts in state.cities]
+    cities = [cts.to_dict() for cts in state.cities]
     return jsonify(cities)
 
 
-@app_views.route('/cities/<city_id>', methods=['GET'],
-                 strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
 def get_city(city_id):
     """get city information for specified city"""
     city = storage.get("City", city_id)

@@ -52,7 +52,6 @@ def getId(state_id):
 
     if request.method == 'DELETE':
         storage.delete(st)
-        # st.delete()
         storage.save()
         return jsonify({}), 200
 
