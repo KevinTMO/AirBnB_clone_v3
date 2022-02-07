@@ -71,28 +71,20 @@ class FileStorage:
 
     def get(self, cls, id):
         res = None
-
-        cls_name = str(cls).split('.')[-1]
-        cls_name = cls_name.split("'")[0]
-        cls1 = cls_name + '.' + id
-
-        for objs in self.__objects.values():
-            if cls1 in self.__objects:
+        # cls_name = str(cls).split('.')[-1]
+        # cls_name = cls_name.split("'")[0]
+        # cls1 = cls_name + '.' + id
+        for objs in self.all(cls).values():
+            if objs.id == id:
                 res = objs
         else:
             return res
 
     def count(self, cls=None):
         total = 0
-
-        if cls is not None:
-
-            cls_name = str(cls).split('.')[-1]
-            cls_name = cls_name.split("'")[0]
-
-            for key in self.__objects:
-                if cls_name in key:
-                    total += 1
+        if cls:
+            # cls_name = str(cls).split('.')[-1]
+            # cls_name = cls_name.split("'")[0]
+            total = len(self.all(cls))
             return total
-        else:
-            return len(self.__objects)
+        return len(self.all())
