@@ -85,9 +85,9 @@ def updateState(state_id):
                 'error': 'Not a JSON'
             }), 400
 
-        obj = storage.get('State', state_id)
+        objSt = storage.get('State', state_id)
 
-        if obj is None:
+        if objSt is None:
             abort(404)
 
         objData['id'] = obj.id
