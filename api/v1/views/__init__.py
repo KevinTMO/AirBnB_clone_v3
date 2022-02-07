@@ -11,7 +11,7 @@ from models.city import City
 from models.place import Place
 from models.amenity import Amenity
 from models.user import User
-# from models.review import Review
+from models.review import Review
 
 # Import all files for handling RESTFul API actions of classes
 
@@ -21,5 +21,5 @@ from api.v1.views.cities import *
 from api.v1.views.amenities import *
 from api.v1.views.places import *
 from api.v1.views.places_amenities import *
-# from api.v1.views.places_reviews import *
+from api.v1.views.places_reviews import *
 from api.v1.views.users import *
