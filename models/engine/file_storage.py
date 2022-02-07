@@ -85,10 +85,15 @@ class FileStorage:
         total = 0
 
         if cls is not None:
+<<<<<<< HEAD
             for key in self.__objects:
                 cls_name = str(cls).split('.')[-1]
                 cls_name = cls_name.split("'>")[0]
                 if cls_name in key:
+=======
+            for key in self.__objects.keys():
+                if cls == key:
+>>>>>>> refs/remotes/origin/master
                     total += 1
         else:
             return len(self.__objects)
