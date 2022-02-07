@@ -35,7 +35,7 @@ def allObjs():
     # IF NOT POST THEN GET BELOW
 
     state = storage.all('State')
-    result = [objs.to_dict() for objs in storage.all('State').values()]
+    result = [objs.to_dict() for objs in state.values()]
     return jsonify(result)
 
 
