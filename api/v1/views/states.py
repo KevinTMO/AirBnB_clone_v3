@@ -89,6 +89,8 @@ def updateState(states_id):
         if obj is None:
             abort(404)
         objData = request.get_json()
+        objData['id'] = obj.id
+        objData['created_at'] = obj.created_at
         objName = objData['name']
         obj.save()
         return jsonify(obj.to_dict()), 200
