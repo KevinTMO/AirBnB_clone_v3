@@ -83,7 +83,7 @@ class FileStorage:
 
         if cls is not None:
             for key in self.__objects.keys():
-                if cls in key:
+                if cls == key:
                     total += 1
         else:
             total = len(self.__objects)
