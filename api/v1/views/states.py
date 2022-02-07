@@ -27,8 +27,7 @@ def allObjs():
         elif 'name' not in objData:
             return jsonify({
                 'error:' 'Missing name',
-                400
-            })
+            }), 400
         obj = State(objData.get('name'))
         obj.save()
         return jsonify(obj.to_dict()), 201
@@ -52,8 +51,6 @@ def getId(state_id):
         abort(404)
 
     if request.method == 'DELETE':
-        if st is None:
-            abort(404)
         storage.delete(st)
         # st.delete()
         storage.save()
