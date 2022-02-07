@@ -41,10 +41,10 @@ def delState(state_id):
     """
     if request.method == 'DELETE':
         st = storage.get('State', state_id)
-
         if st is None:
             abort(404)
-        st.delete()
+        storage.delete(st)
+        # st.delete()
         storage.save()
         return jsonify({}), 200
 
@@ -55,17 +55,17 @@ def createState():
     Create a new State object
     """
     if request.method == 'POST':
-        if not request.get_json():
+        objData = request.get_json()
+        if not objData:
             return jsonify({
                 'error': 'Not a JSON'
             }), 400
 
-        elif 'name' not in request.get_json():
+        elif 'name' not in objData:
             return jsonify({
                 'error:' 'Missing name',
                 400
             })
-        objData = request.get_json()
         obj = State(**objData)
         obj.save()
         return jsonify(obj.to_dict()), 201
@@ -92,6 +92,6 @@ def updateState(state_id):
 
         objData['id'] = obj.id
         objData['created_at'] = obj.created_at
-        obj.__init__
-        obj.save()
-        return jsonify(obj.to_dict()), 200
+        objSt.__init__(**objData)
+        objSt.save()
+        return jsonify(objSt.to_dict()), 200
