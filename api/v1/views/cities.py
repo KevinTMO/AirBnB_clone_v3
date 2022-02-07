@@ -16,14 +16,14 @@ def get_cities(state_id):
     if state is None:
         abort(404)
     #| Below first attempt -> Kevin
-    # cities = [cts.to_dict() if cts.state_id == state.id
-    # for cts in storage.all('City').values()]
+    cities = [cts.to_dict() if cts.state_id == state.id
+              for cts in storage.all('City').values()]
     #| Below second attempt -> Christian
     # cities = []
     # for city in state.cities:
     # cities.append(city.to_dict())
     # Below third attempt -> Kevin
-    cities = [cts.to_dict() for cts in state.cities]
+    # cities = [cts.to_dict() for cts in state.cities]
     return jsonify(cities)
 
 
