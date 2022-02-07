@@ -81,8 +81,7 @@ class DBStorage:
         if cls is not None:
             cls_name = str(cls).split('.')[-1]
             cls_name = cls_name.split("'")[0]
-            objs = storage.all()
-            # objs = self.__session.query(classes[cls_name]).all()
+            objs = self.__session.query(classes[cls_name]).all()
             for obj in objs:
                 if obj.id == id:
                     result = obj
@@ -93,13 +92,11 @@ class DBStorage:
         if cls is not None:
             cls_name = str(cls).split('.')[-1]
             cls_name = cls_name.split("'")[0]
-            objs = storage.all()
-            # objs = self.__session.query(classes[cls_name]).all()
+            objs = self.__session.query(classes[cls_name]).all()
             total = len(objs)
         else:
             for key, value in classes.items():
                 if key != "BaseModel":
-                    objs = storage.all()
-                    # objs = self.__session.query(classes[key]).all()
+                    objs = self.__session.query(classes[key]).all()
                     total += len(objs)
         return total
